@@ -94,27 +94,6 @@ func (c *Connection) Close() error {
 	return nil
 }
 
-// Issue a query on an open connection, returning a RowSet, which
-// can be later used to query the operation's status.
-//func (c *Connection) Query(query string) (RowSet, error) {
-//	executeReq := inf.NewTExecuteStatementReq()
-//	executeReq.SessionHandle = c.session
-//	executeReq.Statement = query
-//	executeReq.RunAsync = true
-
-//	resp, err := c.thrift.ExecuteStatement(executeReq)
-//	if err != nil {
-//		return nil, fmt.Errorf("Error in ExecuteStatement: %+v, %v", resp, err)
-//	}
-
-//	if !isSuccessStatus(resp.Status) {
-//		return nil, fmt.Errorf("Error from server: %s", resp.Status.String())
-//	}
-
-//	log.Println("push query ok:", query)
-
-//	return newRowSet(c.thrift, resp.OperationHandle, c.options), nil
-//}
 
 func (c *Connection) ExecMode(query string, isAsync bool) (*inf.TOperationHandle, error) {
 	executeReq := inf.NewTExecuteStatementReq()
@@ -576,7 +555,6 @@ func (c *Connection) FormatRows(rows *inf.TRowSet, schema *inf.TTableSchema) (re
 
 /*返回格式化后的表头*/
 func (c *Connection) FormatHeads(schema *inf.TTableSchema) (outHead[]string, err error) {
-	//colName := schema.Columns[cpos].ColumnName
 	if schema == nil {
 		err = fmt.Errorf("schema is nil shen FormatHeads")
 		return
