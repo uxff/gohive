@@ -16,9 +16,48 @@ go get -insecure "git.dev.acewill.net/rpc/Gohive"
 
 sql语法中查询字段设置别名必须用反引号 ` 。
 
-例如
+例如:
 
 ```
 select tcid, uid `用户id`, bid+1, sid/100, tcphone, tccharge, tccreated from mall_trade_charges_update_default limit 15
+```
+example:
+```go
+package main
+
+import (
+    "flag"
+    "fmt"
+    "github.com/uxff/gohive"
+)
+
+
+func main() {
+
+    // usage : ./main -h 127.0.0.1:50000 -d default -q "show tables"
+
+    hiveAddr := flag.String("h", "101.201.57.41:50000", "addr of hive")
+    db := flag.String("d", "default", "db of hive")
+    query := flag.String("q", "show tables", "hsql of query")
+    flag.Parse()
+
+    conn, err := gohive.Connect(*hiveAddr, gohive.DefaultOptions)
+    if err != nil {
+        fmt.Println("connect hive error:", err)
+        return
+    }
+
+    conn.Exec("use " + *db)
+
+    rets, err := conn.SimpleQuery(*query)
+
+    if err != nil {
+        fmt.Println("query errer:", err)
+    }
+
+    fmt.Println("hive query result=", rets)
+    
+}
+
 ```
 
