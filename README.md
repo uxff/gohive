@@ -12,7 +12,7 @@ go get "github.com/uxff/gohive"
 
 当前使用thrift-0.9.3版本，与hive的thrift对应。
 
-如果需要更新到thrift-0.10以上版本，则删除tcliservice，将tcliservice.ctx重命名为tcliservice，进行go build会报错，将对应的thrift接口第一个参数增加context.Background(), 即可。
+如果需要更新到thrift-0.10以上版本，则删除tcliservice，将tcliservice.ctx重命名为tcliservice，进行go build会报错，将对应的thrift接口第一个参数增加context.TODO(), 即可。
 
 sql语法中查询字段设置别名必须用反引号 ` 。
 
