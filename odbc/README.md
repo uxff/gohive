@@ -78,7 +78,15 @@ SQL>
 ```
 
 ##go链接
-使用gohive "github.com/weigj/go-odbc" 可以顺利连接hive.
+
+github上go使用odbc主要有两种库:
+- github.com/alexbrainman/odbc
+- github.com/weigj/go-odbc
+
+
+这里使用gohive "github.com/weigj/go-odbc" 可以顺利连接hive.
+
+
 ```
 // Open
 conn, err = gohive.Connect("DSN="+"ClouderaHive")
