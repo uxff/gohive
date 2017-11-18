@@ -1,5 +1,7 @@
 #go 通过 odbc 链接hive
+
 ###安装
+
 ```
 yum install unixODBC
 yum install unixODBC-devel
@@ -7,6 +9,7 @@ yum install unixODBC-devel
 yum install mysql-connector-odbc
 ## hive driver require
 ## https://cwiki.apache.org/confluence/display/Hive/HiveODBC
+
 ```
 官方说不提供hive odbc driver libodbchive.so
 
@@ -17,6 +20,7 @@ yum install mysql-connector-odbc
 https://www.cloudera.com/downloads/connectors/hive/odbc/2-5-12.html
 
 下载ClouderaHiveODBC-2.5.20.1006-1.el7.x86_64.rpm
+
 ```
 $ rpm -ivh ClouderaHiveODBC-2.5.20.1006-1.el7.x86_64.rpm
 error: Failed dependencies:
@@ -30,12 +34,14 @@ $ rpm -ivh ClouderaHiveODBC-2.5.20.1006-1.el7.x86_64.rpm
 
 ```
 ###配置
+
 配置参考这里：
 https://www.ibm.com/support/knowledgecenter/SSCVKV_9.1.2/Campaign/DatabaseTableAdmin/Configuring_the_Cloudera_ODBC_driver.html
 
 配置odbcinst.ini - 已经自动生成，不用配置
 配置odbc.ini
 vim /etc/odbc.ini
+
 ```
 [ClouderaHive]
 Driver=/opt/cloudera/hiveodbc/lib/64/libclouderahiveodbc64.so
@@ -62,6 +68,7 @@ TraceFile=/tmp/odbc.trace.log
 遇到问题可tail -f /tmp/odbc.trace.log来查看
 
 ###测试
+
 isql {dsnname} 
 dsnname就是/etc/odbc.ini中的块名
 ```
@@ -115,6 +122,7 @@ conn.Close()
 ```
 
 ###问题及解决方案
+
 测试发现isql可以连接本机，不能连接网络中的mysql服务器。mysql命令可以连接上网络中的mysql服务器。
 遇到问题：
 /etc/odbc.ini中，UserName字段无效，使用User字段代替。
