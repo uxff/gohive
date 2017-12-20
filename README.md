@@ -3,7 +3,7 @@
 golang链接Hive可以使用odbc和thrift两种方式。
 
 - thrift方式，是golang作为thrift客户端使用thrift协议与hiveserver2通信。
-- odbc方式，是通过libodbc.so,libodbchive.so(第三方可替代)来链接hive。odbc => [here](https://github.com/uxff/gohive/blob/master/odbc/README.md)
+- odbc方式，是通过libodbc.so,libodbchive.so(第三方可替代)来链接hive。[go odbc 方式连接hive查看这里](https://github.com/uxff/gohive/blob/master/odbc/README.md)
 
 
 本库是使用golang链接hiveserver2的库。
